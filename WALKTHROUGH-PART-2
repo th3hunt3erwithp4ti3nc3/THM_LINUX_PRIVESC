@@ -12,5 +12,17 @@ https://www.exploit-db.com/exploits/1518
 
 The exploit is added in this repo as 1518.c
 
-3.
+3.copy 1518.c into target from our attackbox
+scp /work/1518.c .
+
+4. SOME POINTS REGARDING THIS EXPLOIT
+==========================================
+
+A. The MySQL service is running as root and the "root" user for the service does not have a password assigned.
+B. Our exploit will take advantage of User Defined Functions to run system commands as root via MySQL Service.
+C. Condition:
+      1.MySQL 4.x/5.0
+      2.Must be installed with root privilege in linux
+D.
+
 
