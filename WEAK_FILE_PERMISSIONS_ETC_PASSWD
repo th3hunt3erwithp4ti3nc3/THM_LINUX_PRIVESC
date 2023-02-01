@@ -1,0 +1,14 @@
+Lab Scinario:
+The /etc/passwd file contains information about user accounts. It is world-readable, but usually only writable by the root user.
+ls -l /etc/passwd
+
+Steps:
+I.Generate a new password hash with a password of your choice:
+openssl passwd ur101g
+
+II.Edit the /etc/passwd file and place the generated password hash between the first and second colon (:) of the root
+user's row (replacing the "x").
+
+III. su root
+
+
