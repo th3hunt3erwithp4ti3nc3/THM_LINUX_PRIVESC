@@ -2,3 +2,4 @@ SUDO ENVIRONMENT VARIABLE
 ========================
 
 A good discussion:
+https://www.baeldung.com/linux/sudo-manage-environment-variables
